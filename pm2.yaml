@@ -1,0 +1,42 @@
+apps:
+  - name: feedr-gateway
+    script: dotnet
+    args:
+      - watch
+    cwd: src\FeedR.Gateway
+    max_restarts: 3
+
+  - name: feedr-aggregator
+    script: dotnet
+    args:
+      - watch
+    cwd: src\FeedR.Aggregator
+    max_restarts: 3
+
+  - name: feedr-notifier
+    script: dotnet
+    args:
+      - watch
+    cwd: src\FeedR.Notifier
+    max_restarts: 3
+
+  - name: feedr-feeds-news
+    script: dotnet
+    args:
+      - watch
+    cwd: src\FeedR.Feeds.News
+    max_restarts: 3
+
+  - name: feedr-feeds-quotes
+    script: dotnet
+    args:
+      - watch
+    cwd: src\FeedR.Feeds.Quotes
+    max_restarts: 3
+
+  - name: feedr-feeds-weather
+    script: dotnet
+    args:
+      - watch
+    cwd: src\FeedR.Feeds.Weather
+    max_restarts: 3

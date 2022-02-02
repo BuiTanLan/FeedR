@@ -1,0 +1,43 @@
+version: '3.4'
+
+services:
+  feedr.aggregator:
+    image: ${DOCKER_REGISTRY-}feedraggregator
+    build:
+      context: .
+      dockerfile: src/Aggregator/FeedR.Aggregator/Dockerfile
+
+  feedr.feeds.news:
+    image: ${DOCKER_REGISTRY-}feedrfeedsnews
+    build:
+      context: .
+      dockerfile: src/Feeds/News/FeedR.Feeds.News/Dockerfile
+
+
+  feedr.feeds.quotes:
+    image: ${DOCKER_REGISTRY-}feedrfeedsquotes
+    build:
+      context: .
+      dockerfile: src/Feeds/Quotes/FeedR.Feeds.Quotes/Dockerfile
+
+
+  feedr.feeds.weather:
+    image: ${DOCKER_REGISTRY-}feedrfeedsweather
+    build:
+      context: .
+      dockerfile: src/Feeds/Weather/FeedR.Feeds.Weather/Dockerfile
+
+
+  feedr.gateway:
+    image: ${DOCKER_REGISTRY-}feedrgateway
+    build:
+      context: .
+      dockerfile: src/Gateway/FeedR.Gateway/Dockerfile
+
+
+  feedr.notifier:
+    image: ${DOCKER_REGISTRY-}feedrnotifier
+    build:
+      context: .
+      dockerfile: src/Notifier/FeedR.Notifier/Dockerfile
+
