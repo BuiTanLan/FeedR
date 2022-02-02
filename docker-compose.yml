@@ -41,3 +41,10 @@ services:
       context: .
       dockerfile: src/Notifier/FeedR.Notifier/Dockerfile
 
+
+  feedr.shared:
+    image: ${DOCKER_REGISTRY-}feedrshared
+    build:
+      context: .
+      dockerfile: src/Shared/FeedR.Shared/Dockerfile
+
