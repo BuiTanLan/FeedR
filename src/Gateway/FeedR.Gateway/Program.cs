@@ -1,6 +1,11 @@
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services
+    .AddReverseProxy()
+    .LoadFromConfig(builder.Configuration.GetSection("yarp"));
 var app = builder.Build();
 
-app.MapGet("/", () => "Hello World!");
+app.MapGet("/",() => "FeedR Gateway");
+app.MapReverseProxy();
 
 app.Run();
