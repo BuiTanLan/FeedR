@@ -1,4 +1,4 @@
-version: '3.4'
+version: '3.9'
 
 services:
   feedr.aggregator:
@@ -40,11 +40,4 @@ services:
     build:
       context: .
       dockerfile: src/Notifier/FeedR.Notifier/Dockerfile
-
-
-  feedr.shared:
-    image: ${DOCKER_REGISTRY-}feedrshared
-    build:
-      context: .
-      dockerfile: src/Shared/FeedR.Shared/Dockerfile
 
