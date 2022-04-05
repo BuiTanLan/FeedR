@@ -15,4 +15,8 @@
       <PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Shared\FeedR.Shared\FeedR.Shared.csproj" />
+    </ItemGroup>
+
 </Project>

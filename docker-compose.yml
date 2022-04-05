@@ -1,6 +1,9 @@
 version: '3.9'
 
 services:
+  redis:
+    image: redis
+    
   feedr.aggregator:
     image: ${DOCKER_REGISTRY-}feedraggregator
     build:

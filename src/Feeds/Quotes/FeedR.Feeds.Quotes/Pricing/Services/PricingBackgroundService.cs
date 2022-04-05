@@ -1,4 +1,5 @@
 ﻿using FeedR.Feeds.Quotes.Pricing.Requests;
+using FeedR.Shared.Streaming;
 using Serilog;
 
 namespace FeedR.Feeds.Quotes.Pricing.Services;
@@ -8,8 +9,13 @@ internal class PricingBackgroundService: BackgroundService
     private int _runningStatus;
     private readonly IPricingGenerator _pricingGenerator;
     private readonly PricingRequestsChannel _requestsChannel;
+    private readonly IStreamPublisher _streamPublisher;
 
-    public PricingBackgroundService(IPricingGenerator pricingGenerator, PricingRequestsChannel requestsChannel)
+
+    public PricingBackgroundService(
+        IPricingGenerator pricingGenerator,
+        IStreamPublisher streamPublisher,
+        PricingRequestsChannel requestsChannel)
     {
         _pricingGenerator = pricingGenerator;
         _requestsChannel = requestsChannel;
@@ -41,7 +47,11 @@ internal class PricingBackgroundService: BackgroundService
             return;
         }
 
-        await _pricingGenerator.StartAsync();
+        await foreach (var currencyPair in _pricingGenerator.StartAsync())
+        {
+            Log.Information("Publishing the currency pair...");
+            await _streamPublisher.PublishAsync("pricing", currencyPair);
+        }
     }
 
     private async Task StopGeneratorAsync()

@@ -1,6 +1,18 @@
 version: '3.9'
 
 services:
+  
+  redis:
+    image: redis
+    container_name: redis
+    restart: unless-stopped
+    networks:
+      - feedr
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis:/data
+  
   feedr.gateway:
     container_name: feedr-gateway
     restart: unless-stopped
@@ -67,3 +79,7 @@ networks:
   feedr:
     name: feedr
     external: true
+
+volumes:
+  redis:
+    driver: local   
