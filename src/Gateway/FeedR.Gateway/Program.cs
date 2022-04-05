@@ -1,5 +1,7 @@
-var builder = WebApplication.CreateBuilder(args);
+using Serilog;
 
+var builder = WebApplication.CreateBuilder(args);
+builder.Host.UseSerilog((_, lc) => lc.WriteTo.Console());
 builder.Services
     .AddReverseProxy()
     .LoadFromConfig(builder.Configuration.GetSection("yarp"));
